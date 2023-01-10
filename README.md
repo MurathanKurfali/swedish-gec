@@ -14,7 +14,7 @@ https://drive.google.com/file/d/1Fi-Skm8oR-zrA0MvwZVFJra-N0wESrTU/
 
 You can run the model as follows:
 ```
-./correct.sh [path-to-trained-model] [input_file_path] [output_file_path]
+./correct.sh [path-to-trained-model] [path-to-input] [path-to-output](optional)
 ```
 
 
