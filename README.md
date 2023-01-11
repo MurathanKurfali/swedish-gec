@@ -1,20 +1,24 @@
 # MT-based Grammatical Error Correction for Swedish
 
+This repository contains resources for a machine learning model for grammatical error correction of Swedish text. The model is based on machine translation techniques, and is trained on a dataset of automatically generated error-corrected sentence pairs.
 
-## Installation
+## Requirements
 
-Firstly, you need Python3 or higher with all requirements.txt dependencies installed.
+All required dependencies are listed in the requirements.txt file. To install them, run the following command:
+
 ```
 pip install -r requirements.txt
 ```
-Then, you can download the trained model from: \
+
+## Model
+The model is implemented using the OpenNMT-py library, based on the transformer-base model. You can find the pre-trained model and its configuration file here:
 https://drive.google.com/file/d/1Fi-Skm8oR-zrA0MvwZVFJra-N0wESrTU/
 
-## Run
+## Usage
 
-You can run the model as follows:
+You can use the model to correct grammatical errors in Swedish text by running the following command:
+
 ```
 ./correct.sh [path-to-trained-model] [path-to-input] [path-to-output](optional)
 ```
-
-
+This script automatically detects if a GPU is available and uses it for processing, otherwise it uses the CPU.
