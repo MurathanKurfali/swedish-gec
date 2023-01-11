@@ -12,7 +12,7 @@ pip install -r requirements.txt
 
 ## Model
 The model is implemented using the OpenNMT-py library, based on the transformer-base model. You can find the pre-trained model and its configuration file here:
-https://drive.google.com/file/d/1Fi-Skm8oR-zrA0MvwZVFJra-N0wESrTU/
+https://drive.google.com/drive/folders/1VEtTYgtrW9WRJw0Owp8aQl_nADcwvgyr
 
 ## Usage
 
