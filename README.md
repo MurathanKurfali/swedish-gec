@@ -14,7 +14,7 @@ This repository contains the code and resources for a distantly supervised Gramm
 git clone https://github.com/your-username/grammatical-error-detection-swedish.git
 
 2. Download the model:
-Download the model from ["Google Drive"](https://drive.google.com/drive/folders/1K2EzW57ieyISyIY1dVfiM2JQf0dTXfZU?usp=sharing).
+Download the model from ["Google Drive"](https://drive.google.com/drive/folders/1VEtTYgtrW9WRJw0Owp8aQl_nADcwvgyr?usp=share_link).
 
 3. Run the script to process your input:
 
@@ -29,7 +29,7 @@ The input file should follow the "one sentence per line" format.
 
 ## Bibtex Citation
 If you use this system or find it helpful, please consider citing the accompanying paper:
-
+```
 @inproceedings{kurfali2023distantly,
   title={A distantly supervised Grammatical Error Detection/Correction system for Swedish},
   author={Kurfal{\i}, Murathan and {\"O}stling, Robert},
@@ -37,4 +37,5 @@ If you use this system or find it helpful, please consider citing the accompanyi
   pages={35--39},
   year={2023}
 }
+```
 
