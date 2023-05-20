@@ -2,6 +2,7 @@
 
 This repository contains the source code and the models used for [Shared task on Multilingual Grammatical Error Detection (MultiGED-2023)](https://github.com/spraakbanken/multiged-2023). The system utilizes a neural machine translation-based model trained on an automatically corrupted large corpus of Swedish text (~3.2 billion words).
 
+The model is intended as a baseline for our ongoing work on Swedish grammatical error correction using large language models (Östling&Kurfali, 2022).
 ## Prerequisites
 
 - Python 3.7 or higher
