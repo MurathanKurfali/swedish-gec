@@ -1,2 +1,2 @@
-OpenNMT-py==2.3.0
 sentencepiece
+OpenNMT-py==2.3.0

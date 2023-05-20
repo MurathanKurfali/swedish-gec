@@ -1,47 +1,49 @@
 #!/bin/bash
 
+# Check if the required arguments are provided
+if [ $# -ne 3 ]; then
+  echo "Usage: $0 <model_path> <input_path> <output_path>"
+  exit 1
+fi
+
 model_path=$1
-input_file=$2
+input_path=$2
 output_path=$3
 
-spm_vocab_path="vocab/swe-gec.spm.model" ## change this if you move the spm vocabulary folder
-
-if [ "$#" -eq 3 ]; then
-	output_path=$3
-elif [ "$#" -eq 2 ]; then
-	output_path="${input_file}.corr"
-else
-    echo "Illegal number of parameters"
-    echo "Sample usage: "
-    exit
+# Check if the output folder exists, and create it if necessary
+if [ ! -d "${output_path}" ]; then
+  echo "Creating output folder: ${output_path}"
+  mkdir -p "${output_path}"
+  echo "Output folder created!"
 fi
 
-tmp_folder="_tmp_files"
-filename="${input_file##*/}"
-mkdir $tmp_folder
+# Extract the filename from the input path
+filename="${input_path##*/}"
 
-num_gpu=$(python - <<EOF
-import torch
-print(torch.cuda.device_count()-1)
-EOF
-)
+# Encode the input file using SentencePiece
+echo "Encoding input file..."
+spm_encode --model=vocab/all_data.spm.model --output_format=piece < "${input_path}" > "${output_path}/${filename}.spm"
+echo "Encoding done!"
 
-if [[ $num_gpu < 0 ]]; then
-  echo "No GPU detected. The model will run on CPU"
+# Run the grammatical error correction model
+echo "Running the grammatical error correction model: ${model_path}"
+if command -v nvidia-smi &> /dev/null; then
+  echo "GPU detected. Running with GPU support."
+  onmt_translate --model "${model_path}" --src "${output_path}/${filename}.spm" --gpu --verbose --batch_size 100 --output "${output_path}/${filename}.corrected.spm"
 else
-    echo "GPU detected."
+  echo "No GPU detected. Running on CPU."
+  onmt_translate --model "${model_path}" --src "${output_path}/${filename}.spm" --verbose --batch_size 100 --output "${output_path}/${filename}.corrected.spm"
 fi
+echo "Grammatical error correction done!"
 
+# Decode the corrected output using SentencePiece
+echo "Decoding corrected output..."
+spm_decode --model=vocab/all_data.spm.model --input_format=piece < "${output_path}/${filename}.corrected.spm" > "${output_path}/${filename}_corrected"
+echo "Decoding done!"
 
-spm_encode --model=${spm_vocab_path} --output_format=piece < ${input_file} > ${tmp_folder}/"${filename}.spm"
-echo "encoding done!"
+# Remove the intermediate encoded files
+echo "Removing intermediate files..."
+rm "${output_path}"/*.spm
+echo "Intermediate files removed!"
 
-echo "running the model: ${model_path}"
-onmt_translate --model ${model_path} --src ${tmp_folder}/"${filename}.spm" --gpu ${num_gpu} --verbose --batch_size 100  --output ${tmp_folder}/"${filename}.predicted.spm"
-echo "Correction done"
-
-spm_decode --model=${spm_vocab_path} --input_format=piece < ${tmp_folder}/"${filename}.predicted.spm" > ${output_path}
-echo "Decoding done"
-rm -rf ${tmp_folder}
-
-
+echo "Process completed successfully."
