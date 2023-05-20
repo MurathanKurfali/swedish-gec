@@ -1,6 +1,6 @@
-# MT-based Grammatical Error Correction for Swedish
+# MT-based Distantly Supervised Grammatical Error Correction for Swedish
 
-This repository contains the code and resources for a distantly supervised Grammatical Error Detection/Correction system for Swedish. The system utilizes a neural network-based model trained on a large corpus of Swedish text.
+This repository contains the source code and the models used for [Shared task on Multilingual Grammatical Error Detection (MultiGED-2023)](https://github.com/spraakbanken/multiged-2023). The system utilizes a neural machine translation-based model trained on an automatically corrupted large corpus of Swedish text (~3.2 billion words).
 
 ## Prerequisites
 
