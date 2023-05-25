@@ -15,8 +15,7 @@ The model is intended as a baseline for our ongoing work on Swedish grammatical 
 1. Clone the repository:
 git clone https://github.com/your-username/grammatical-error-detection-swedish.git
 
-2. Download the model:
-Download the model from ["Google Drive"](https://drive.google.com/drive/folders/1VEtTYgtrW9WRJw0Owp8aQl_nADcwvgyr?usp=share_link).
+2. Download the model from ["Google Drive"](https://drive.google.com/drive/folders/1VEtTYgtrW9WRJw0Owp8aQl_nADcwvgyr?usp=share_link).
 
 3. Run the script to process your input:
 
